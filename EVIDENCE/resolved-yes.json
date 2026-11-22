@@ -1,0 +1,141 @@
+{
+  "market": "1a5271tnEsfPZpnDzZNH8yo5e6SPc6cwZX46cZ3TU3t",
+  "checkedAtUtc": "2026-11-15T10:39:52.891Z",
+  "rpcEndpoint": "https://api.devnet.solana.com",
+  "engineVersion": "1.0.0",
+  "note": "Resolved market, YES won. Resolution warn (program-owned/vault authority). Collateral-mint check caught a non-mUSDC mint -> solvency fail.",
+  "verdict": {
+    "market": "1a5271tnEsfPZpnDzZNH8yo5e6SPc6cwZX46cZ3TU3t",
+    "network": "devnet",
+    "programId": "GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y",
+    "score": 19,
+    "band": "AVOID",
+    "explanation": "This market scores 19/100 \u2014 avoid it. One key can upgrade the program: ETGK\u20267R6Y. The upgrade authority read from the ProgramData account is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig control. That key could replace the program logic, including resolution and vault rules, at any time. Last deployed at slot 511,269,300 (2026-10-15). 11 recent ProgramData transactions were observed (bounded RPC history \u2014 this may be incomplete and is not a full upgrade history; confirming an upgrade needs transaction parsing). The program has no third-party audit \u2014 its own docs describe it as a trust-based proof of concept. CRITICAL: this market is collateralized by 6TaW\u2026koLH, not the devnet mUSDC mint (3WQ8\u2026MEWZ). The program accepts any SPL mint as collateral, so the vault may hold a worthless or self-minted token even if the coverage ratio looks fine. Do not trade this market.",
+    "checks": [
+      {
+        "id": "resolution-authority",
+        "title": "Resolution authority",
+        "weight": 25,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/1a5271tnEsfPZpnDzZNH8yo5e6SPc6cwZX46cZ3TU3t?cluster=devnet"
+          },
+          {
+            "label": "Resolution authority account on Solscan (devnet)",
+            "url": "https://solscan.io/account/58pFWjLGDDxUv3NHqeD433v4XsLzLf2h32FYbnvPMZdH?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM docs \u2014 limitations (\u00a77)",
+            "url": "https://predict-pm-amm.dev/"
+          }
+        ],
+        "implemented": true,
+        "status": "warn",
+        "points": 60,
+        "explanation": "This market is already resolved (YES won), decided by 58pF\u2026MZdH. The authority address is owned by the pm-AMM program itself, which suggests this market was launched by a vault program account rather than a personal key. The pm-AMM program has no oracle, no dispute window, and no timelock \u2014 verified in the program source (none of its 34 instructions implements oracle, dispute, or timelock logic) and disclosed in its own docs. The resolution authority's decision is final. There was no dispute path for traders who disagreed with the outcome."
+      },
+      {
+        "id": "upgrade-authority",
+        "title": "Upgrade authority",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "pm-AMM program on Solscan (devnet)",
+            "url": "https://solscan.io/account/GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y?cluster=devnet"
+          },
+          {
+            "label": "ProgramData account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4wBVEijk6s6F9NuYmTRxbMWPfAaFXRsNq54haAf88piF?cluster=devnet"
+          },
+          {
+            "label": "Upgrade authority account on Solscan (devnet)",
+            "url": "https://solscan.io/account/ETGKSFc7KMu32foPegEGiqFiDX3B2bPXhiFhvm8K7R6Y?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "fail",
+        "points": 10,
+        "explanation": "One key can upgrade the program: ETGK\u20267R6Y. The upgrade authority read from the ProgramData account is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig control. That key could replace the program logic, including resolution and vault rules, at any time. Last deployed at slot 511,269,300 (2026-10-15). 11 recent ProgramData transactions were observed (bounded RPC history \u2014 this may be incomplete and is not a full upgrade history; confirming an upgrade needs transaction parsing). The program has no third-party audit \u2014 its own docs describe it as a trust-based proof of concept."
+      },
+      {
+        "id": "solvency",
+        "title": "Solvency",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/1a5271tnEsfPZpnDzZNH8yo5e6SPc6cwZX46cZ3TU3t?cluster=devnet"
+          },
+          {
+            "label": "Vault token account on Solscan (devnet)",
+            "url": "https://solscan.io/account/8tN9gb1emW2sLaBwpa9g3Pfge9rCejMaG6WPUQoCWGpi?cluster=devnet"
+          },
+          {
+            "label": "YES token mint on Solscan (devnet)",
+            "url": "https://solscan.io/account/Cw3MeJwSe8CCX1emLaFystZCNyESYMNvUn1vvqbvprop?cluster=devnet"
+          },
+          {
+            "label": "NO token mint on Solscan (devnet)",
+            "url": "https://solscan.io/account/8Y7PVfv9nkp9yN4w4TUa5fMZFcAJvsHwJAAFGzA7ZwiS?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "fail",
+        "points": 0,
+        "explanation": "CRITICAL: this market is collateralized by 6TaW\u2026koLH, not the devnet mUSDC mint (3WQ8\u2026MEWZ). The program accepts any SPL mint as collateral, so the vault may hold a worthless or self-minted token even if the coverage ratio looks fine. Do not trade this market."
+      },
+      {
+        "id": "coherence",
+        "title": "Multi-outcome coherence",
+        "weight": 15,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/1a5271tnEsfPZpnDzZNH8yo5e6SPc6cwZX46cZ3TU3t?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This is a standalone binary market: it has one YES price and no sibling legs, so probability coherence (do the legs sum to 100%?) does not apply. No fake sum is shown."
+      },
+      {
+        "id": "lp-risk",
+        "title": "LP risk",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/1a5271tnEsfPZpnDzZNH8yo5e6SPc6cwZX46cZ3TU3t?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM paper (Paradigm, 2024)",
+            "url": "https://www.paradigm.xyz/writing/pm-amm"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This market is resolved, so the LP window is over \u2014 no live liquidity-provider exposure remains to judge. LPs claim or withdraw under the post-resolution rules."
+      },
+      {
+        "id": "expiry-rules",
+        "title": "Expiry & market rules",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/1a5271tnEsfPZpnDzZNH8yo5e6SPc6cwZX46cZ3TU3t?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "pass",
+        "points": 80,
+        "explanation": "This market is resolved (YES won). Settlement terms (verified in the program code): 1 winning token = 1 mUSDC with no fee, and 1 YES + 1 NO can always be redeemed together for 1 mUSDC, before or after resolution. Question: \"Will ETH be above $1,000 at 2026-10-03 08:42 UTC?\". No resolution rules are recorded on-chain \u2014 the 64-byte market name is the only market text that exists, so the resolution authority's interpretation of the question is final."
+      }
+    ],
+    "generatedAt": "2026-11-15T10:39:52.891Z",
+    "engineVersion": "1.0.0"
+  }
+}

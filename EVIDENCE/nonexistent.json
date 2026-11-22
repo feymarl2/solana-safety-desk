@@ -1,0 +1,113 @@
+{
+  "market": "3iY6hiRf9b5JKB8iK2am2HBBM8iWRo9KxovmeMRcGWXb",
+  "checkedAtUtc": "2026-11-15T10:40:06.398Z",
+  "rpcEndpoint": "https://api.devnet.solana.com",
+  "engineVersion": "1.0.0",
+  "note": "Random fresh keypair address, no account on devnet. All checks info, UNRATED, no score invented.",
+  "verdict": {
+    "market": "3iY6hiRf9b5JKB8iK2am2HBBM8iWRo9KxovmeMRcGWXb",
+    "network": "devnet",
+    "programId": "GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y",
+    "score": null,
+    "band": "UNRATED",
+    "explanation": "This address could not be scored: no check produced a score \u2014 the address may not be a pm-AMM market, the devnet reads may have failed, or every check was informational. Read the per-check explanations below, verify the address on the explorer, and try again.",
+    "checks": [
+      {
+        "id": "resolution-authority",
+        "title": "Resolution authority",
+        "weight": 25,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/3iY6hiRf9b5JKB8iK2am2HBBM8iWRo9KxovmeMRcGWXb?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "No account exists at this address on devnet, so there is no resolution authority to check. Check the address and try again."
+      },
+      {
+        "id": "upgrade-authority",
+        "title": "Upgrade authority",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "pm-AMM program on Solscan (devnet)",
+            "url": "https://solscan.io/account/GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "The upgrade-authority verdict applies to the pm-AMM program, not to this address \u2014 and this address is not a pm-AMM market or group account, so no market verdict is scored."
+      },
+      {
+        "id": "solvency",
+        "title": "Solvency",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/3iY6hiRf9b5JKB8iK2am2HBBM8iWRo9KxovmeMRcGWXb?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "No account exists at this address on devnet, so there is no vault to check."
+      },
+      {
+        "id": "coherence",
+        "title": "Multi-outcome coherence",
+        "weight": 15,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/3iY6hiRf9b5JKB8iK2am2HBBM8iWRo9KxovmeMRcGWXb?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "No account exists at this address on devnet, so there is no group to check."
+      },
+      {
+        "id": "lp-risk",
+        "title": "LP risk",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/3iY6hiRf9b5JKB8iK2am2HBBM8iWRo9KxovmeMRcGWXb?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM paper (Paradigm, 2024)",
+            "url": "https://www.paradigm.xyz/writing/pm-amm"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "No account exists at this address on devnet, so there is no liquidity pool to judge."
+      },
+      {
+        "id": "expiry-rules",
+        "title": "Expiry & market rules",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/3iY6hiRf9b5JKB8iK2am2HBBM8iWRo9KxovmeMRcGWXb?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "No account exists at this address on devnet, so there is no expiry to check."
+      }
+    ],
+    "generatedAt": "2026-11-15T10:40:06.398Z",
+    "engineVersion": "1.0.0"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "market": "4s2XecwCSGWePmQR4QesHKMncXZccBo5ZqWx5t1n7N76",
+  "checkedAtUtc": "2026-11-15T10:39:33.719Z",
+  "rpcEndpoint": "https://api.devnet.solana.com",
+  "engineVersion": "1.0.0",
+  "note": "Multi-outcome group, live drift demo. Leg prices 33.3/33.3/76.5, sum 143.2%, drift 43.2pp -> coherence fail. Per-leg solvency 1.11x/1.11x/1.05x.",
+  "verdict": {
+    "market": "4s2XecwCSGWePmQR4QesHKMncXZccBo5ZqWx5t1n7N76",
+    "network": "devnet",
+    "programId": "GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y",
+    "score": 19,
+    "band": "AVOID",
+    "explanation": "This market scores 19/100 \u2014 avoid it. One key can upgrade the program: ETGK\u20267R6Y. The upgrade authority read from the ProgramData account is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig control. That key could replace the program logic, including resolution and vault rules, at any time. Last deployed at slot 511,269,300 (2026-10-15). 11 recent ProgramData transactions were observed (bounded RPC history \u2014 this may be incomplete and is not a full upgrade history; confirming an upgrade needs transaction parsing). The program has no third-party audit \u2014 its own docs describe it as a trust-based proof of concept. The 3 priced leg(s) sum to 143.2% \u2014 43.2pp away from 100%: \"BTC\" 33.3%, \"ETH\" 33.3%, \"SOL\" 76.5%. The group was seeded at 99.99% total. This is large drift: the legs' implied probabilities are mutually inconsistent, so at least one leg is badly mispriced and the group's prices cannot all be trusted.",
+    "checks": [
+      {
+        "id": "resolution-authority",
+        "title": "Resolution authority",
+        "weight": 25,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4s2XecwCSGWePmQR4QesHKMncXZccBo5ZqWx5t1n7N76?cluster=devnet"
+          },
+          {
+            "label": "Resolution authority account on Solscan (devnet)",
+            "url": "https://solscan.io/account/6NG87yZrQw6zH6Au8fHbYcD7Dken5smAzisLeXazpt8E?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM docs \u2014 limitations (\u00a77)",
+            "url": "https://predict-pm-amm.dev/"
+          }
+        ],
+        "implemented": true,
+        "status": "warn",
+        "points": 35,
+        "explanation": "One address controls resolution: 6NG8\u2026pt8E. The authority is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig or DAO control. This is a group: the group authority picks the winning leg, and each leg then resolves by cascade \u2014 attached legs cannot resolve directly. Resolution is only possible after expiry, in 46d 13h. The pm-AMM program has no oracle, no dispute window, and no timelock \u2014 verified in the program source (none of its 34 instructions implements oracle, dispute, or timelock logic) and disclosed in its own docs. The resolution authority's decision is final. This check cannot judge whether the authority resolved fairly in the past \u2014 that needs transaction history, which the desk does not read."
+      },
+      {
+        "id": "upgrade-authority",
+        "title": "Upgrade authority",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "pm-AMM program on Solscan (devnet)",
+            "url": "https://solscan.io/account/GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y?cluster=devnet"
+          },
+          {
+            "label": "ProgramData account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4wBVEijk6s6F9NuYmTRxbMWPfAaFXRsNq54haAf88piF?cluster=devnet"
+          },
+          {
+            "label": "Upgrade authority account on Solscan (devnet)",
+            "url": "https://solscan.io/account/ETGKSFc7KMu32foPegEGiqFiDX3B2bPXhiFhvm8K7R6Y?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "fail",
+        "points": 10,
+        "explanation": "One key can upgrade the program: ETGK\u20267R6Y. The upgrade authority read from the ProgramData account is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig control. That key could replace the program logic, including resolution and vault rules, at any time. Last deployed at slot 511,269,300 (2026-10-15). 11 recent ProgramData transactions were observed (bounded RPC history \u2014 this may be incomplete and is not a full upgrade history; confirming an upgrade needs transaction parsing). The program has no third-party audit \u2014 its own docs describe it as a trust-based proof of concept."
+      },
+      {
+        "id": "solvency",
+        "title": "Solvency",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4s2XecwCSGWePmQR4QesHKMncXZccBo5ZqWx5t1n7N76?cluster=devnet"
+          },
+          {
+            "label": "Leg 1 (BTC) on Solscan (devnet)",
+            "url": "https://solscan.io/account/6Yg878V1u4HDgeWrKmjTiXvDRoB5SGvUbG5iFr3xJzCj?cluster=devnet"
+          },
+          {
+            "label": "Leg 2 (ETH) on Solscan (devnet)",
+            "url": "https://solscan.io/account/G3hAKbitFXdSsmQ6y3i6tPgB1GKyFDuEFi3CSN6pnavE?cluster=devnet"
+          },
+          {
+            "label": "Leg 3 (SOL) on Solscan (devnet)",
+            "url": "https://solscan.io/account/3F2V33qLBmjf5ckTfJQ1iJUrkcCFTA3tGVRbU3TdDK31?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "pass",
+        "points": 90,
+        "explanation": "Every priced leg's vault covers its guard-formula obligation (vault vs outstanding tokens + rescaled reserves + unclaimed surplus). Weakest leg: \"SOL\" at 1.05\u00d7. Per-leg coverage: \"BTC\" 1.11\u00d7, \"ETH\" 1.11\u00d7, \"SOL\" 1.05\u00d7. All decoded legs are collateralized by the devnet mUSDC mint."
+      },
+      {
+        "id": "coherence",
+        "title": "Multi-outcome coherence",
+        "weight": 15,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4s2XecwCSGWePmQR4QesHKMncXZccBo5ZqWx5t1n7N76?cluster=devnet"
+          },
+          {
+            "label": "Leg 1 (BTC) on Solscan (devnet)",
+            "url": "https://solscan.io/account/6Yg878V1u4HDgeWrKmjTiXvDRoB5SGvUbG5iFr3xJzCj?cluster=devnet"
+          },
+          {
+            "label": "Leg 2 (ETH) on Solscan (devnet)",
+            "url": "https://solscan.io/account/G3hAKbitFXdSsmQ6y3i6tPgB1GKyFDuEFi3CSN6pnavE?cluster=devnet"
+          },
+          {
+            "label": "Leg 3 (SOL) on Solscan (devnet)",
+            "url": "https://solscan.io/account/3F2V33qLBmjf5ckTfJQ1iJUrkcCFTA3tGVRbU3TdDK31?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "fail",
+        "points": 25,
+        "explanation": "The 3 priced leg(s) sum to 143.2% \u2014 43.2pp away from 100%: \"BTC\" 33.3%, \"ETH\" 33.3%, \"SOL\" 76.5%. The group was seeded at 99.99% total. This is large drift: the legs' implied probabilities are mutually inconsistent, so at least one leg is badly mispriced and the group's prices cannot all be trusted."
+      },
+      {
+        "id": "lp-risk",
+        "title": "LP risk",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4s2XecwCSGWePmQR4QesHKMncXZccBo5ZqWx5t1n7N76?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM paper (Paradigm, 2024)",
+            "url": "https://www.paradigm.xyz/writing/pm-amm"
+          }
+        ],
+        "implemented": true,
+        "status": "warn",
+        "points": 50,
+        "explanation": "Across the 3 priced leg(s), aggregate pool value is 111.52 mUSDC with 46d 13h to expiry. Each leg's liquidity decays as \u221a(T \u2212 t) toward expiry, and under the paper's model LPs end with half their deposited wealth in expectation (expected terminal wealth = deposited / 2) before any fee income \u2014 and there is no fee income for LPs. The 2% swap fee (USDC leg only) is split 50/50 between the protocol DAO and the market creator \u2014 liquidity providers receive none of it, so LP economics are curve spread plus released residuals only. Realized arbitrage losses cannot be computed: no trade history exists for this market. Figures here are model expectations, not predictions. Paste a single leg address for per-leg decay detail."
+      },
+      {
+        "id": "expiry-rules",
+        "title": "Expiry & market rules",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4s2XecwCSGWePmQR4QesHKMncXZccBo5ZqWx5t1n7N76?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "pass",
+        "points": 85,
+        "explanation": "46d 13h left to expiry. Seeded total 99.99% vs current priced-leg sum 143.2% (see the coherence check). Question: \"Best performer in Q4 2026\". The question passes the name-string clarity checklist (length, question/date/threshold/source signals). Settlement terms (verified in the program code): 1 winning token = 1 mUSDC with no fee, and 1 YES + 1 NO can always be redeemed together for 1 mUSDC, before or after resolution. No resolution rules are recorded on-chain \u2014 the 64-byte market name is the only market text that exists, so the resolution authority's interpretation of the question is final."
+      }
+    ],
+    "generatedAt": "2026-11-15T10:39:33.719Z",
+    "engineVersion": "1.0.0"
+  }
+}

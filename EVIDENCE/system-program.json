@@ -1,0 +1,113 @@
+{
+  "market": "11111111111111111111111111111111",
+  "checkedAtUtc": "2026-11-15T10:40:12.319Z",
+  "rpcEndpoint": "https://api.devnet.solana.com",
+  "engineVersion": "1.0.0",
+  "note": "System program account (exists, not a pm-AMM account). All checks info, UNRATED after the upgrade-check non-market fix.",
+  "verdict": {
+    "market": "11111111111111111111111111111111",
+    "network": "devnet",
+    "programId": "GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y",
+    "score": null,
+    "band": "UNRATED",
+    "explanation": "This address could not be scored: no check produced a score \u2014 the address may not be a pm-AMM market, the devnet reads may have failed, or every check was informational. Read the per-check explanations below, verify the address on the explorer, and try again.",
+    "checks": [
+      {
+        "id": "resolution-authority",
+        "title": "Resolution authority",
+        "weight": 25,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/11111111111111111111111111111111?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This account exists on devnet but is not a pm-AMM market or group account (owner Nati\u20261111, 14 bytes), so it has no resolution authority. Paste a market or group account address."
+      },
+      {
+        "id": "upgrade-authority",
+        "title": "Upgrade authority",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "pm-AMM program on Solscan (devnet)",
+            "url": "https://solscan.io/account/GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "The upgrade-authority verdict applies to the pm-AMM program, not to this address \u2014 and this address is not a pm-AMM market or group account, so no market verdict is scored."
+      },
+      {
+        "id": "solvency",
+        "title": "Solvency",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/11111111111111111111111111111111?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This account is not a pm-AMM market or group account, so it has no solvency vault to check."
+      },
+      {
+        "id": "coherence",
+        "title": "Multi-outcome coherence",
+        "weight": 15,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/11111111111111111111111111111111?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This account is not a pm-AMM market or group account, so coherence does not apply."
+      },
+      {
+        "id": "lp-risk",
+        "title": "LP risk",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/11111111111111111111111111111111?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM paper (Paradigm, 2024)",
+            "url": "https://www.paradigm.xyz/writing/pm-amm"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This account is not a pm-AMM market or group account, so it has no LP pool."
+      },
+      {
+        "id": "expiry-rules",
+        "title": "Expiry & market rules",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/11111111111111111111111111111111?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This account is not a pm-AMM market or group account, so expiry and settlement terms do not apply."
+      }
+    ],
+    "generatedAt": "2026-11-15T10:40:12.319Z",
+    "engineVersion": "1.0.0"
+  }
+}

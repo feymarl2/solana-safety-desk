@@ -1,0 +1,141 @@
+{
+  "market": "Ai7PRVYMMU8SGcokmd43nVzZ84vV9eavNxZPjhF9gMpX",
+  "checkedAtUtc": "2026-11-15T10:39:46.283Z",
+  "rpcEndpoint": "https://api.devnet.solana.com",
+  "engineVersion": "1.0.0",
+  "note": "Expired 131d, still unresolved -> resolution fail. Collateral-mint check caught a non-mUSDC mint -> solvency fail. Score 8.",
+  "verdict": {
+    "market": "Ai7PRVYMMU8SGcokmd43nVzZ84vV9eavNxZPjhF9gMpX",
+    "network": "devnet",
+    "programId": "GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y",
+    "score": 8,
+    "band": "AVOID",
+    "explanation": "This market scores 8/100 \u2014 avoid it. This market expired 131d 14h ago and is still unresolved. Only 5isZ\u2026XJgu can resolve it, and there is no on-chain deadline forcing resolution \u2014 winnings stay locked until that address acts, if it ever does. The pm-AMM program has no oracle, no dispute window, and no timelock \u2014 verified in the program source (none of its 34 instructions implements oracle, dispute, or timelock logic) and disclosed in its own docs. The resolution authority's decision is final. The only fallback in the system (permissionless voiding after a grace period) exists solely for bet-vault markets, and this market shows no evidence of being one. One key can upgrade the program: ETGK\u20267R6Y. The upgrade authority read from the ProgramData account is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig control. That key could replace the program logic, including resolution and vault rules, at any time. Last deployed at slot 511,269,300 (2026-10-15). 11 recent ProgramData transactions were observed (bounded RPC history \u2014 this may be incomplete and is not a full upgrade history; confirming an upgrade needs transaction parsing). The program has no third-party audit \u2014 its own docs describe it as a trust-based proof of concept. CRITICAL: this market is collateralized by 9GC7\u20267Hrr, not the devnet mUSDC mint (3WQ8\u2026MEWZ). The program accepts any SPL mint as collateral, so the vault may hold a worthless or self-minted token even if the coverage ratio looks fine. Do not trade this market.",
+    "checks": [
+      {
+        "id": "resolution-authority",
+        "title": "Resolution authority",
+        "weight": 25,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/Ai7PRVYMMU8SGcokmd43nVzZ84vV9eavNxZPjhF9gMpX?cluster=devnet"
+          },
+          {
+            "label": "Resolution authority account on Solscan (devnet)",
+            "url": "https://solscan.io/account/5isZ5siqn6DExDCHsBAV4EDhLwtCZTEeXYDJ14ZyXJgu?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM docs \u2014 limitations (\u00a77)",
+            "url": "https://predict-pm-amm.dev/"
+          }
+        ],
+        "implemented": true,
+        "status": "fail",
+        "points": 5,
+        "explanation": "This market expired 131d 14h ago and is still unresolved. Only 5isZ\u2026XJgu can resolve it, and there is no on-chain deadline forcing resolution \u2014 winnings stay locked until that address acts, if it ever does. The pm-AMM program has no oracle, no dispute window, and no timelock \u2014 verified in the program source (none of its 34 instructions implements oracle, dispute, or timelock logic) and disclosed in its own docs. The resolution authority's decision is final. The only fallback in the system (permissionless voiding after a grace period) exists solely for bet-vault markets, and this market shows no evidence of being one."
+      },
+      {
+        "id": "upgrade-authority",
+        "title": "Upgrade authority",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "pm-AMM program on Solscan (devnet)",
+            "url": "https://solscan.io/account/GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y?cluster=devnet"
+          },
+          {
+            "label": "ProgramData account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4wBVEijk6s6F9NuYmTRxbMWPfAaFXRsNq54haAf88piF?cluster=devnet"
+          },
+          {
+            "label": "Upgrade authority account on Solscan (devnet)",
+            "url": "https://solscan.io/account/ETGKSFc7KMu32foPegEGiqFiDX3B2bPXhiFhvm8K7R6Y?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "fail",
+        "points": 10,
+        "explanation": "One key can upgrade the program: ETGK\u20267R6Y. The upgrade authority read from the ProgramData account is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig control. That key could replace the program logic, including resolution and vault rules, at any time. Last deployed at slot 511,269,300 (2026-10-15). 11 recent ProgramData transactions were observed (bounded RPC history \u2014 this may be incomplete and is not a full upgrade history; confirming an upgrade needs transaction parsing). The program has no third-party audit \u2014 its own docs describe it as a trust-based proof of concept."
+      },
+      {
+        "id": "solvency",
+        "title": "Solvency",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/Ai7PRVYMMU8SGcokmd43nVzZ84vV9eavNxZPjhF9gMpX?cluster=devnet"
+          },
+          {
+            "label": "Vault token account on Solscan (devnet)",
+            "url": "https://solscan.io/account/D9vNpcguwrbXQGd7B3Km4b8LdJNGjrtixvkQjtahPpFR?cluster=devnet"
+          },
+          {
+            "label": "YES token mint on Solscan (devnet)",
+            "url": "https://solscan.io/account/Hs8UvT4iwLxbp2m6SNy4uVc93CJKgocmitW65pDGDZ5F?cluster=devnet"
+          },
+          {
+            "label": "NO token mint on Solscan (devnet)",
+            "url": "https://solscan.io/account/6ZhTEyF5Vfz9jx41TJfP8oPPfopU7NqwFQm3hqsyoDhG?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "fail",
+        "points": 0,
+        "explanation": "CRITICAL: this market is collateralized by 9GC7\u20267Hrr, not the devnet mUSDC mint (3WQ8\u2026MEWZ). The program accepts any SPL mint as collateral, so the vault may hold a worthless or self-minted token even if the coverage ratio looks fine. Do not trade this market."
+      },
+      {
+        "id": "coherence",
+        "title": "Multi-outcome coherence",
+        "weight": 15,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/Ai7PRVYMMU8SGcokmd43nVzZ84vV9eavNxZPjhF9gMpX?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This is a standalone binary market: it has one YES price and no sibling legs, so probability coherence (do the legs sum to 100%?) does not apply. No fake sum is shown."
+      },
+      {
+        "id": "lp-risk",
+        "title": "LP risk",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/Ai7PRVYMMU8SGcokmd43nVzZ84vV9eavNxZPjhF9gMpX?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM paper (Paradigm, 2024)",
+            "url": "https://www.paradigm.xyz/writing/pm-amm"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This market has expired, so the LP window is over \u2014 no live liquidity-provider exposure remains to judge. LPs claim or withdraw once the authority resolves it."
+      },
+      {
+        "id": "expiry-rules",
+        "title": "Expiry & market rules",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/Ai7PRVYMMU8SGcokmd43nVzZ84vV9eavNxZPjhF9gMpX?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "warn",
+        "points": 30,
+        "explanation": "This market expired 131d 14h ago and is still unresolved \u2014 winnings stay locked until the authority resolves it. The market's total duration is under an hour, leaving thin time for price discovery. Seed YES price 50.0% vs current 50.0% (+0.0pp). Question: \"CASHOUT smoke\". Question-clarity heuristic flags (name-string checklist only, not a verified rules check): the question has no question mark, number, date, threshold, or named source. Settlement terms (verified in the program code): 1 winning token = 1 mUSDC with no fee, and 1 YES + 1 NO can always be redeemed together for 1 mUSDC, before or after resolution. No resolution rules are recorded on-chain \u2014 the 64-byte market name is the only market text that exists, so the resolution authority's interpretation of the question is final."
+      }
+    ],
+    "generatedAt": "2026-11-15T10:39:46.283Z",
+    "engineVersion": "1.0.0"
+  }
+}

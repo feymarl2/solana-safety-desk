@@ -1,0 +1,141 @@
+{
+  "market": "2BqF6eu6MmBRm48ttuzst8Q7dnTuNkx2pedrYhTheLi4",
+  "checkedAtUtc": "2026-11-15T10:39:39.808Z",
+  "rpcEndpoint": "https://api.devnet.solana.com",
+  "engineVersion": "1.0.0",
+  "note": "Expired 4h37m before check, still unresolved, funded. Solvency 1.42x. Resolution warn (winnings locked).",
+  "verdict": {
+    "market": "2BqF6eu6MmBRm48ttuzst8Q7dnTuNkx2pedrYhTheLi4",
+    "network": "devnet",
+    "programId": "GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y",
+    "score": 19,
+    "band": "AVOID",
+    "explanation": "This market scores 19/100 \u2014 avoid it. One key can upgrade the program: ETGK\u20267R6Y. The upgrade authority read from the ProgramData account is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig control. That key could replace the program logic, including resolution and vault rules, at any time. Last deployed at slot 511,269,300 (2026-10-15). 11 recent ProgramData transactions were observed (bounded RPC history \u2014 this may be incomplete and is not a full upgrade history; confirming an upgrade needs transaction parsing). The program has no third-party audit \u2014 its own docs describe it as a trust-based proof of concept.",
+    "checks": [
+      {
+        "id": "resolution-authority",
+        "title": "Resolution authority",
+        "weight": 25,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/2BqF6eu6MmBRm48ttuzst8Q7dnTuNkx2pedrYhTheLi4?cluster=devnet"
+          },
+          {
+            "label": "Resolution authority account on Solscan (devnet)",
+            "url": "https://solscan.io/account/2uZ9tpFrKnRDXxWdSvJ6rSnxfsqrDP1AL66qWzKB4WjZ?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM docs \u2014 limitations (\u00a77)",
+            "url": "https://predict-pm-amm.dev/"
+          }
+        ],
+        "implemented": true,
+        "status": "warn",
+        "points": 35,
+        "explanation": "One address controls resolution: 2uZ9\u20264WjZ. The authority is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig or DAO control. It expired 4h 39m ago and is awaiting resolution \u2014 winnings are locked until the authority acts. The pm-AMM program has no oracle, no dispute window, and no timelock \u2014 verified in the program source (none of its 34 instructions implements oracle, dispute, or timelock logic) and disclosed in its own docs. The resolution authority's decision is final. This check cannot judge whether the authority resolved fairly in the past \u2014 that needs transaction history, which the desk does not read."
+      },
+      {
+        "id": "upgrade-authority",
+        "title": "Upgrade authority",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "pm-AMM program on Solscan (devnet)",
+            "url": "https://solscan.io/account/GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y?cluster=devnet"
+          },
+          {
+            "label": "ProgramData account on Solscan (devnet)",
+            "url": "https://solscan.io/account/4wBVEijk6s6F9NuYmTRxbMWPfAaFXRsNq54haAf88piF?cluster=devnet"
+          },
+          {
+            "label": "Upgrade authority account on Solscan (devnet)",
+            "url": "https://solscan.io/account/ETGKSFc7KMu32foPegEGiqFiDX3B2bPXhiFhvm8K7R6Y?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "fail",
+        "points": 10,
+        "explanation": "One key can upgrade the program: ETGK\u20267R6Y. The upgrade authority read from the ProgramData account is a single on-curve address \u2014 the shape of a plain keypair \u2014 with no on-chain evidence of multisig control. That key could replace the program logic, including resolution and vault rules, at any time. Last deployed at slot 511,269,300 (2026-10-15). 11 recent ProgramData transactions were observed (bounded RPC history \u2014 this may be incomplete and is not a full upgrade history; confirming an upgrade needs transaction parsing). The program has no third-party audit \u2014 its own docs describe it as a trust-based proof of concept."
+      },
+      {
+        "id": "solvency",
+        "title": "Solvency",
+        "weight": 20,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/2BqF6eu6MmBRm48ttuzst8Q7dnTuNkx2pedrYhTheLi4?cluster=devnet"
+          },
+          {
+            "label": "Vault token account on Solscan (devnet)",
+            "url": "https://solscan.io/account/HMgy5FWikN7nagDya5mSsnxWSgLx7rRRgKZTViA7fxdT?cluster=devnet"
+          },
+          {
+            "label": "YES token mint on Solscan (devnet)",
+            "url": "https://solscan.io/account/5bTMkhEq4jVC9z7vHHDpWqeRRBDvmwBTjjg87VkGFVn9?cluster=devnet"
+          },
+          {
+            "label": "NO token mint on Solscan (devnet)",
+            "url": "https://solscan.io/account/3KsBAMUzMk6aJZqQTuiEg5FSP89bMv5gD4PXtNUTKQ9C?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "pass",
+        "points": 90,
+        "explanation": "The vault holds 129.27 mUSDC against an obligation of 90.88 mUSDC (the program's guard formula (outstanding tokens + rescaled reserves + unclaimed LP surplus)), a coverage ratio of 1.42\u00d7. Winning tokens are fully backed at 1 winning token = 1 mUSDC, and the collateral mint is the devnet mUSDC mint. Outstanding supply: 54.46 YES / 12.98 NO; rescaled reserves: 0.46 / 0.38."
+      },
+      {
+        "id": "coherence",
+        "title": "Multi-outcome coherence",
+        "weight": 15,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/2BqF6eu6MmBRm48ttuzst8Q7dnTuNkx2pedrYhTheLi4?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This is a standalone binary market: it has one YES price and no sibling legs, so probability coherence (do the legs sum to 100%?) does not apply. No fake sum is shown."
+      },
+      {
+        "id": "lp-risk",
+        "title": "LP risk",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/2BqF6eu6MmBRm48ttuzst8Q7dnTuNkx2pedrYhTheLi4?cluster=devnet"
+          },
+          {
+            "label": "pm-AMM paper (Paradigm, 2024)",
+            "url": "https://www.paradigm.xyz/writing/pm-amm"
+          }
+        ],
+        "implemented": true,
+        "status": "info",
+        "points": null,
+        "explanation": "This market has expired, so the LP window is over \u2014 no live liquidity-provider exposure remains to judge. LPs claim or withdraw once the authority resolves it."
+      },
+      {
+        "id": "expiry-rules",
+        "title": "Expiry & market rules",
+        "weight": 10,
+        "evidence": [
+          {
+            "label": "Market account on Solscan (devnet)",
+            "url": "https://solscan.io/account/2BqF6eu6MmBRm48ttuzst8Q7dnTuNkx2pedrYhTheLi4?cluster=devnet"
+          }
+        ],
+        "implemented": true,
+        "status": "warn",
+        "points": 40,
+        "explanation": "This market expired 4h 39m ago and is still unresolved \u2014 winnings stay locked until the authority resolves it. Seed YES price 27.7% vs current 47.0% (+19.3pp). Question: \"SOL>68.8@1794722400\". The question passes the name-string clarity checklist (length, question/date/threshold/source signals). Settlement terms (verified in the program code): 1 winning token = 1 mUSDC with no fee, and 1 YES + 1 NO can always be redeemed together for 1 mUSDC, before or after resolution. No resolution rules are recorded on-chain \u2014 the 64-byte market name is the only market text that exists, so the resolution authority's interpretation of the question is final."
+      }
+    ],
+    "generatedAt": "2026-11-15T10:39:39.808Z",
+    "engineVersion": "1.0.0"
+  }
+}
